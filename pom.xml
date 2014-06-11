@@ -7,15 +7,45 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>TestSVN Maven Webapp</name>
   <url>http://maven.apache.org</url>
+  <properties>
+  	<webapp.version>${buildSequential}</webapp.version>
+    <webapp.revision>${buildRevision}</webapp.revision>
+  </properties>
+  <scm>
+    <connection>scm:svn:https://github.com/EliseevAndrew/TestSVN.git/trunk</connection>
+    <developerConnection>scm:svn:https://github.com/EliseevAndrew/TestSVN.git/trunk</developerConnection>
+    <tag>HEAD</tag>
+    <url>https://github.com/EliseevAndrew/TestSVN.git/trunk</url>
+  </scm>
+  
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
-    </dependency>
+    </dependency>    
   </dependencies>
   <build>
-    <finalName>TestSVN</finalName>
+    <plugins>
+    <!-- Use the svn revision number for the built artifact -->
+    <plugin>
+  		<groupId>org.codehaus.mojo</groupId>
+  		<artifactId>buildnumber-maven-plugin</artifactId>
+  		<executions>
+    		<execution>
+      			<phase>validate</phase>
+      			<goals>
+        			<goal>create</goal>
+      			</goals>
+    		</execution>
+  		</executions>
+  		<configuration>
+    		<doCheck>false</doCheck>
+    		<doUpdate>true</doUpdate>
+  		</configuration>
+	</plugin>
+
+   </plugins>
   </build>
 </project>
