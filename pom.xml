@@ -29,7 +29,7 @@
   <build>
     <plugins>
     <!-- Use the svn revision number for the built artifact -->
-    <plugin>
+    <!-- <plugin>
   		<groupId>org.codehaus.mojo</groupId>
   		<artifactId>buildnumber-maven-plugin</artifactId>
   		<executions>
@@ -44,7 +44,22 @@
     		<doCheck>false</doCheck>
     		<doUpdate>true</doUpdate>
   		</configuration>
-	</plugin>
+	</plugin> -->
+	<plugin>
+                <groupId>com.google.code.maven-svn-revision-number-plugin</groupId>
+                <artifactId>svn-revision-number-maven-plugin</artifactId>
+                <version>1.13</version> <!-- please use the latest version -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!-- put required configuration here -->
+                </configuration>
+            </plugin>
 
    </plugins>
   </build>
